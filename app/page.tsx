@@ -1,39 +1,42 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { ThemeToggle } from "@/components/ui/theme-toggle"
 import Link from "next/link"
-import { Star, Clock, ChefHat, Facebook, Twitter, Instagram, Truck, Users, Award } from "lucide-react"
+import { Star, Clock, ChefHat, Facebook, Twitter, Instagram, Truck, Users, Award, Sparkles } from "lucide-react"
 
 export default function HomePage() {
   return (
     <div className="min-h-screen hero-gradient">
-      <nav className="bg-white/90 backdrop-blur-md border-b border-border sticky top-0 z-50 shadow-sm">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 warm-gradient rounded-xl flex items-center justify-center shadow-lg">
-              <ChefHat className="w-6 h-6 text-white" />
+      <nav className="bg-card/80 backdrop-blur-lg border-b border-border sticky top-0 z-50">
+        <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+          <div className="flex items-center space-x-2">
+            <div className="w-9 h-9 warm-gradient rounded-lg flex items-center justify-center">
+              <ChefHat className="w-5 h-5 text-white" />
             </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            <span className="text-xl font-bold text-foreground">
               FoodHub
             </span>
           </div>
-          <div className="hidden md:flex items-center space-x-8">
-            <Link href="/driver" className="text-muted-foreground hover:text-accent transition-colors font-medium">
+          <div className="hidden md:flex items-center space-x-6">
+            <Link href="/driver" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               For Drivers
             </Link>
-            <Link href="/restaurant" className="text-muted-foreground hover:text-accent transition-colors font-medium">
+            <Link href="/restaurant" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               For Restaurants
             </Link>
             <Link
               href="/customer-service"
-              className="text-muted-foreground hover:text-accent transition-colors font-medium"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
               Support
             </Link>
+            <ThemeToggle />
             <Button
               asChild
-              variant="outline"
-              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
+              variant="default"
+              size="sm"
+              className="warm-gradient border-0 hover:opacity-90"
             >
               <Link href="/auth/customer/signin">Sign In</Link>
             </Button>
@@ -41,44 +44,45 @@ export default function HomePage() {
         </div>
       </nav>
 
-      <section className="container mx-auto px-4 py-20">
+      <section className="container mx-auto px-4 py-16 lg:py-24">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-8">
-            <Badge className="bg-accent/10 text-accent hover:bg-accent/20 border-accent/20">
-              🎉 Claim Best Offer on Fast Food & Restaurants
+          <div className="space-y-6">
+            <Badge className="bg-primary/10 text-primary border-primary/20 rounded-full px-4 py-1.5">
+              <Sparkles className="w-3.5 h-3.5 inline mr-1.5" />
+              Special Offers Available
             </Badge>
-            <h1 className="text-5xl lg:text-6xl font-bold text-foreground leading-tight">
-              Menu That Always
-              <span className="block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                Makes You Fall In Love
+            <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-tight">
+              Delicious Food
+              <span className="block text-primary mt-2">
+                Delivered Fast
               </span>
             </h1>
-            <p className="text-xl text-muted-foreground max-w-lg">
-              Our job is to filling your tummy with delicious food and with fast and free delivery
+            <p className="text-lg text-muted-foreground max-w-lg leading-relaxed">
+              Order from your favorite restaurants and get fresh, delicious food delivered right to your doorstep.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-3 pt-2">
               <Button
                 asChild
                 size="lg"
-                className="warm-gradient hover:opacity-90 text-white px-8 py-6 text-lg rounded-xl shadow-lg"
+                className="warm-gradient border-0 hover:opacity-90 text-white font-semibold"
               >
-                <Link href="/auth/customer/signin">Get Started</Link>
+                <Link href="/auth/customer/signin">Order Now</Link>
               </Button>
               <Button
                 asChild
                 variant="outline"
                 size="lg"
-                className="border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 py-6 text-lg rounded-xl bg-transparent"
+                className="font-semibold"
               >
-                <Link href="#menu">Watch Video</Link>
+                <Link href="#menu">Browse Menu</Link>
               </Button>
             </div>
           </div>
 
           <div className="relative">
-            <div className="w-96 h-96 mx-auto relative">
-              <div className="absolute inset-0 warm-gradient rounded-full opacity-20 blur-3xl"></div>
-              <div className="relative w-full h-full rounded-full overflow-hidden shadow-2xl">
+            <div className="w-full max-w-lg mx-auto relative">
+              <div className="absolute inset-0 warm-gradient rounded-3xl opacity-10 blur-3xl"></div>
+              <div className="relative w-full aspect-square rounded-3xl overflow-hidden shadow-xl border border-border">
                 {/* 🖼️ WEB IMAGE INTEGRATION - HERO SECTION:
                   Replace the placeholder below with any web image URL:
                   Example: src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=400&h=400&fit=crop"
@@ -94,16 +98,16 @@ export default function HomePage() {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="absolute -top-4 -right-4 bg-white rounded-xl p-3 shadow-lg">
-                <div className="flex items-center space-x-2">
-                  <Star className="w-5 h-5 text-yellow-400 fill-current" />
-                  <span className="font-semibold text-sm">4.8</span>
+              <div className="absolute -top-3 -right-3 bg-card rounded-xl p-3 shadow-lg border border-border">
+                <div className="flex items-center space-x-1.5">
+                  <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
+                  <span className="font-bold text-sm text-foreground">4.8</span>
                 </div>
               </div>
-              <div className="absolute -bottom-4 -left-4 bg-white rounded-xl p-3 shadow-lg">
-                <div className="flex items-center space-x-2">
-                  <Clock className="w-5 h-5 text-accent" />
-                  <span className="font-semibold text-sm">25 min</span>
+              <div className="absolute -bottom-3 -left-3 bg-card rounded-xl p-3 shadow-lg border border-border">
+                <div className="flex items-center space-x-1.5">
+                  <Clock className="w-4 h-4 text-primary" />
+                  <span className="font-semibold text-sm text-foreground">25 min</span>
                 </div>
               </div>
             </div>
@@ -113,38 +117,38 @@ export default function HomePage() {
 
       <section className="container mx-auto px-4 py-16">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-foreground mb-4">What We Serve</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">Your Favourite Food Delivery Partner</p>
+          <h2 className="text-3xl font-bold text-foreground mb-3">Why Choose Us</h2>
+          <p className="text-muted-foreground">Your trusted food delivery partner</p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          <Card className="food-card border-0">
-            <CardContent className="p-8 text-center">
-              <div className="w-20 h-20 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <Truck className="w-10 h-10 text-accent" />
+        <div className="grid md:grid-cols-3 gap-6">
+          <Card className="food-card">
+            <CardContent className="p-6 text-center">
+              <div className="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <Truck className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold mb-3 text-foreground">Easy To Order</h3>
-              <p className="text-muted-foreground">You only need a few steps in ordering food</p>
+              <h3 className="text-lg font-semibold mb-2 text-foreground">Easy To Order</h3>
+              <p className="text-sm text-muted-foreground">Simple ordering process in just a few taps</p>
             </CardContent>
           </Card>
 
-          <Card className="food-card border-0">
-            <CardContent className="p-8 text-center">
-              <div className="w-20 h-20 bg-primary/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <Clock className="w-10 h-10 text-primary" />
+          <Card className="food-card">
+            <CardContent className="p-6 text-center">
+              <div className="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <Clock className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold mb-3 text-foreground">Fastest Delivery</h3>
-              <p className="text-muted-foreground">Delivery that is always ontime even faster</p>
+              <h3 className="text-lg font-semibold mb-2 text-foreground">Fast Delivery</h3>
+              <p className="text-sm text-muted-foreground">Quick delivery right to your doorstep</p>
             </CardContent>
           </Card>
 
-          <Card className="food-card border-0">
-            <CardContent className="p-8 text-center">
-              <div className="w-20 h-20 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <Award className="w-10 h-10 text-green-600" />
+          <Card className="food-card">
+            <CardContent className="p-6 text-center">
+              <div className="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <Award className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold mb-3 text-foreground">Best Quality</h3>
-              <p className="text-muted-foreground">Not only fast for us quality is also number one</p>
+              <h3 className="text-lg font-semibold mb-2 text-foreground">Best Quality</h3>
+              <p className="text-sm text-muted-foreground">Premium quality food from top restaurants</p>
             </CardContent>
           </Card>
         </div>
@@ -152,12 +156,12 @@ export default function HomePage() {
 
       <section id="menu" className="container mx-auto px-4 py-16">
         <div className="text-center mb-12">
-          <Badge className="bg-accent/10 text-accent mb-4">OUR MENU</Badge>
-          <h2 className="text-4xl font-bold text-foreground mb-4">Menu That Always Makes You Fall In Love</h2>
+          <Badge className="bg-primary/10 text-primary border-primary/20 rounded-full mb-4">POPULAR CATEGORIES</Badge>
+          <h2 className="text-3xl font-bold text-foreground">Explore Our Menu</h2>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
+          <div className="space-y-3">
             {[
               { name: "Burger", icon: "🍔", active: false },
               { name: "Pizza", icon: "🍕", active: true },
@@ -167,19 +171,21 @@ export default function HomePage() {
             ].map((item, index) => (
               <div
                 key={index}
-                className={`flex items-center space-x-4 p-4 rounded-xl cursor-pointer transition-all ${
-                  item.active ? "bg-accent text-white shadow-lg" : "hover:bg-card"
+                className={`flex items-center space-x-3 p-4 rounded-xl cursor-pointer transition-all border ${
+                  item.active 
+                    ? "bg-primary text-white border-primary shadow-sm" 
+                    : "bg-card border-border hover:border-primary/50"
                 }`}
               >
-                <span className="text-2xl">{item.icon}</span>
-                <span className="font-semibold text-lg">{item.name}</span>
+                <span className="text-xl">{item.icon}</span>
+                <span className="font-semibold">{item.name}</span>
               </div>
             ))}
           </div>
 
-          <div className="grid grid-cols-2 gap-6">
-            <Card className="food-card border-0">
-              <div className="aspect-square bg-gray-200 rounded-t-xl overflow-hidden">
+          <div className="grid grid-cols-2 gap-4">
+            <Card className="food-card">
+              <div className="aspect-square bg-muted rounded-t-xl overflow-hidden">
                 {/* 🍕 WEB IMAGE INTEGRATION - MENU ITEM 1:
                   Replace with pizza image URL:
                   Example: src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=200&h=200&fit=crop"
@@ -191,14 +197,13 @@ export default function HomePage() {
                 />
               </div>
               <CardContent className="p-4">
-                <h3 className="font-semibold text-lg mb-1">Italian Pizza</h3>
-                <p className="text-accent font-bold text-xl">$7.49</p>
-                <p className="text-sm text-muted-foreground mt-1">Order Now →</p>
+                <h3 className="font-semibold mb-1">Italian Pizza</h3>
+                <p className="text-primary font-bold text-lg">$7.49</p>
               </CardContent>
             </Card>
 
-            <Card className="food-card border-0">
-              <div className="aspect-square bg-gray-200 rounded-t-xl overflow-hidden">
+            <Card className="food-card">
+              <div className="aspect-square bg-muted rounded-t-xl overflow-hidden">
                 {/* 🌭 WEB IMAGE INTEGRATION - MENU ITEM 2:
                   Replace with sausage pizza image URL:
                   Example: src="https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=200&h=200&fit=crop"
@@ -210,9 +215,8 @@ export default function HomePage() {
                 />
               </div>
               <CardContent className="p-4">
-                <h3 className="font-semibold text-lg mb-1">Sausage Pizza</h3>
-                <p className="text-accent font-bold text-xl">$6.59</p>
-                <p className="text-sm text-muted-foreground mt-1">Order Now →</p>
+                <h3 className="font-semibold mb-1">Sausage Pizza</h3>
+                <p className="text-primary font-bold text-lg">$6.59</p>
               </CardContent>
             </Card>
           </div>
@@ -221,18 +225,17 @@ export default function HomePage() {
 
       <section className="container mx-auto px-4 py-16">
         <div className="text-center mb-12">
-          <Badge className="bg-primary/10 text-primary mb-4">WHAT THEY SAY</Badge>
-          <h2 className="text-4xl font-bold text-foreground">What Our Customers Say About Us</h2>
+          <Badge className="bg-primary/10 text-primary border-primary/20 rounded-full mb-4">TESTIMONIALS</Badge>
+          <h2 className="text-3xl font-bold text-foreground">What Our Customers Say</h2>
         </div>
 
-        <div className="max-w-4xl mx-auto">
-          <Card className="food-card border-0 p-8">
+        <div className="max-w-3xl mx-auto">
+          <Card className="food-card p-8">
             <div className="text-center">
-              <p className="text-lg text-muted-foreground mb-6 italic">
-                "FoodHub is the best! Besides the many and delicious meals, the service is also very good, especially in
-                the very fast delivery. I highly recommend FoodHub to you"
+              <p className="text-base text-muted-foreground mb-6 leading-relaxed">
+                "FoodHub makes ordering food so easy! The delivery is always fast and the food arrives fresh and hot. Highly recommend!"
               </p>
-              <div className="flex items-center justify-center space-x-4">
+              <div className="flex items-center justify-center space-x-3">
                 {/* 👤 WEB IMAGE INTEGRATION - CUSTOMER AVATAR:
                   Replace the icon below with a customer photo:
                   Example: 
@@ -242,17 +245,17 @@ export default function HomePage() {
                     className="w-12 h-12 rounded-full object-cover"
                   />
                 */}
-                <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
-                  <Users className="w-6 h-6 text-white" />
+                <div className="w-12 h-12 bg-muted rounded-full flex items-center justify-center">
+                  <Users className="w-6 h-6 text-muted-foreground" />
                 </div>
-                <div>
-                  <p className="font-semibold">Theresa Jordan</p>
-                  <p className="text-sm text-muted-foreground">Food Enthusiast</p>
+                <div className="text-left">
+                  <p className="font-semibold text-foreground">Theresa Jordan</p>
+                  <p className="text-xs text-muted-foreground">Food Enthusiast</p>
                 </div>
               </div>
-              <div className="flex justify-center space-x-1 mt-4">
+              <div className="flex justify-center space-x-1 mt-5">
                 {[1, 2, 3, 4, 5].map((star) => (
-                  <Star key={star} className="w-5 h-5 text-yellow-400 fill-current" />
+                  <Star key={star} className="w-4 h-4 text-yellow-500 fill-yellow-500" />
                 ))}
               </div>
             </div>
@@ -260,61 +263,61 @@ export default function HomePage() {
         </div>
       </section>
 
-      <footer className="bg-foreground text-background">
-        <div className="container mx-auto px-4 py-16">
+      <footer className="bg-card border-t border-border">
+        <div className="container mx-auto px-4 py-12">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
-              <div className="flex items-center space-x-3 mb-6">
-                <div className="w-10 h-10 warm-gradient rounded-xl flex items-center justify-center">
-                  <ChefHat className="w-6 h-6 text-white" />
+              <div className="flex items-center space-x-2 mb-4">
+                <div className="w-8 h-8 warm-gradient rounded-lg flex items-center justify-center">
+                  <ChefHat className="w-4 h-4 text-white" />
                 </div>
-                <span className="text-2xl font-bold">FoodHub</span>
+                <span className="text-lg font-bold text-foreground">FoodHub</span>
               </div>
-              <p className="text-muted mb-6">
-                Our job is to filling your tummy with delicious food and with fast and free delivery
+              <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
+                Fast, reliable food delivery from your favorite restaurants.
               </p>
-              <div className="flex space-x-4">
+              <div className="flex space-x-3">
                 <Link
                   href="#"
-                  className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center hover:bg-primary/30 transition-colors"
+                  className="w-9 h-9 bg-muted rounded-lg flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
                 >
-                  <Facebook className="w-5 h-5" />
+                  <Facebook className="w-4 h-4" />
                 </Link>
                 <Link
                   href="#"
-                  className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center hover:bg-primary/30 transition-colors"
+                  className="w-9 h-9 bg-muted rounded-lg flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
                 >
-                  <Twitter className="w-5 h-5" />
+                  <Twitter className="w-4 h-4" />
                 </Link>
                 <Link
                   href="#"
-                  className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center hover:bg-primary/30 transition-colors"
+                  className="w-9 h-9 bg-muted rounded-lg flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
                 >
-                  <Instagram className="w-5 h-5" />
+                  <Instagram className="w-4 h-4" />
                 </Link>
               </div>
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold mb-6">About</h3>
-              <ul className="space-y-3">
+              <h3 className="text-sm font-semibold mb-4 text-foreground">About</h3>
+              <ul className="space-y-2.5">
                 <li>
-                  <Link href="/about" className="text-muted hover:text-background transition-colors">
+                  <Link href="/about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                     About Us
                   </Link>
                 </li>
                 <li>
-                  <Link href="/features" className="text-muted hover:text-background transition-colors">
+                  <Link href="/features" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                     Features
                   </Link>
                 </li>
                 <li>
-                  <Link href="/news" className="text-muted hover:text-background transition-colors">
+                  <Link href="/news" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                     News
                   </Link>
                 </li>
                 <li>
-                  <Link href="/menu" className="text-muted hover:text-background transition-colors">
+                  <Link href="/menu" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                     Menu
                   </Link>
                 </li>
@@ -322,25 +325,25 @@ export default function HomePage() {
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold mb-6">Company</h3>
-              <ul className="space-y-3">
+              <h3 className="text-sm font-semibold mb-4 text-foreground">Company</h3>
+              <ul className="space-y-2.5">
                 <li>
-                  <Link href="/why-foodhub" className="text-muted hover:text-background transition-colors">
+                  <Link href="/why-foodhub" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                     Why FoodHub?
                   </Link>
                 </li>
                 <li>
-                  <Link href="/partner" className="text-muted hover:text-background transition-colors">
+                  <Link href="/partner" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                     Partner With Us
                   </Link>
                 </li>
                 <li>
-                  <Link href="/faq" className="text-muted hover:text-background transition-colors">
+                  <Link href="/faq" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                     FAQ
                   </Link>
                 </li>
                 <li>
-                  <Link href="/blog" className="text-muted hover:text-background transition-colors">
+                  <Link href="/blog" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                     Blog
                   </Link>
                 </li>
@@ -348,30 +351,30 @@ export default function HomePage() {
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold mb-6">Support</h3>
-              <ul className="space-y-3">
+              <h3 className="text-sm font-semibold mb-4 text-foreground">Support</h3>
+              <ul className="space-y-2.5">
                 <li>
-                  <Link href="/account" className="text-muted hover:text-background transition-colors">
+                  <Link href="/account" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                     Account
                   </Link>
                 </li>
                 <li>
-                  <Link href="/support" className="text-muted hover:text-background transition-colors">
+                  <Link href="/support" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                     Support Center
                   </Link>
                 </li>
                 <li>
-                  <Link href="/feedback" className="text-muted hover:text-background transition-colors">
+                  <Link href="/feedback" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                     Feedback
                   </Link>
                 </li>
                 <li>
-                  <Link href="/contact" className="text-muted hover:text-background transition-colors">
+                  <Link href="/contact" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                     Contact Us
                   </Link>
                 </li>
                 <li>
-                  <Link href="/accessibility" className="text-muted hover:text-background transition-colors">
+                  <Link href="/accessibility" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                     Accessibility
                   </Link>
                 </li>
@@ -379,8 +382,8 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="border-t border-muted/20 mt-12 pt-8 text-center text-muted">
-            <p>&copy; 2024 FoodHub. All rights reserved.</p>
+          <div className="border-t border-border mt-10 pt-6 text-center">
+            <p className="text-sm text-muted-foreground">&copy; 2024 FoodHub. All rights reserved.</p>
           </div>
         </div>
       </footer>
