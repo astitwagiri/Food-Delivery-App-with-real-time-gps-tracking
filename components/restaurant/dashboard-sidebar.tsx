@@ -16,6 +16,7 @@ import {
   Home,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { ThemeToggle } from "@/components/ui/theme-toggle"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { signOut, useSession } from "next-auth/react"
@@ -63,17 +64,17 @@ export function DashboardSidebar() {
   }
 
   return (
-    <div className={`bg-white border-r border-gray-200 transition-all duration-300 ${collapsed ? "w-16" : "w-64"}`}>
+    <div className={`bg-card border-r border-border transition-all duration-300 ${collapsed ? "w-16" : "w-64"}`}>
       <div className="flex flex-col h-full">
         {/* Header */}
-        <div className="p-4 border-b border-gray-200">
+        <div className="p-4 border-b border-border">
           <div className="flex items-center justify-between">
             {!collapsed && (
               <div className="flex items-center space-x-2">
-                <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                <div className="w-8 h-8 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg flex items-center justify-center">
                   <Building2 className="w-5 h-5 text-white" />
                 </div>
-                <span className="font-semibold text-gray-900">FoodHub</span>
+                <span className="font-semibold text-foreground">FoodHub</span>
               </div>
             )}
             <Button variant="ghost" size="sm" onClick={() => setCollapsed(!collapsed)} className="p-1">
@@ -83,21 +84,21 @@ export function DashboardSidebar() {
         </div>
 
         {/* User Profile */}
-        <div className="p-4 border-b border-gray-200">
+        <div className="p-4 border-b border-border">
           <div className="flex items-center space-x-3">
             <Avatar className="w-10 h-10">
               <AvatarImage src={session?.user?.image || ""} />
-              <AvatarFallback className="bg-blue-100 text-blue-600">
+              <AvatarFallback className="bg-primary/10 text-primary">
                 {session?.user?.name?.charAt(0) || session?.user?.email?.charAt(0) || "R"}
               </AvatarFallback>
             </Avatar>
             {!collapsed && (
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-gray-900 truncate">
+                <p className="text-sm font-medium text-foreground truncate">
                   {session?.user?.name || "Restaurant Owner"}
                 </p>
-                <p className="text-xs text-gray-500 truncate">{session?.user?.email}</p>
-                <Badge variant="secondary" className="mt-1 text-xs bg-green-100 text-green-800">
+                <p className="text-xs text-muted-foreground truncate">{session?.user?.email}</p>
+                <Badge variant="secondary" className="mt-1 text-xs bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-300">
                   Active
                 </Badge>
               </div>
@@ -116,8 +117,8 @@ export function DashboardSidebar() {
                 href={item.href}
                 className={`flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
                   isActive
-                    ? "bg-blue-50 text-blue-700 border-r-2 border-blue-700"
-                    : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                    ? "bg-primary/10 text-primary"
+                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
                 }`}
               >
                 <item.icon className={`w-5 h-5 ${collapsed ? "mx-auto" : "mr-3"}`} />
@@ -127,12 +128,23 @@ export function DashboardSidebar() {
           })}
         </nav>
 
-        {/* Sign Out */}
-        <div className="p-4 border-t border-gray-200">
+        {/* Theme Toggle & Sign Out */}
+        <div className="p-4 border-t border-border space-y-2">
+          {!collapsed && (
+            <div className="flex items-center justify-between px-3">
+              <span className="text-sm font-medium text-muted-foreground">Theme</span>
+              <ThemeToggle />
+            </div>
+          )}
+          {collapsed && (
+            <div className="flex justify-center">
+              <ThemeToggle />
+            </div>
+          )}
           <Button
             variant="ghost"
             onClick={handleSignOut}
-            className={`w-full justify-start text-red-600 hover:text-red-700 hover:bg-red-50 ${
+            className={`w-full justify-start text-destructive hover:text-destructive hover:bg-destructive/10 ${
               collapsed ? "px-2" : ""
             }`}
           >

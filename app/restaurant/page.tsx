@@ -3,6 +3,7 @@ import { redirect } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { ThemeToggle } from "@/components/ui/theme-toggle"
 import Link from "next/link"
 import { Store, TrendingUp, Users, Clock, BarChart3, Smartphone, Headphones, Award } from "lucide-react"
 
@@ -23,24 +24,25 @@ export default async function RestaurantPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-emerald-50">
       {/* Navigation */}
-      <nav className="bg-white/80 backdrop-blur-md border-b sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+      <nav className="bg-card/80 backdrop-blur-lg border-b border-border sticky top-0 z-50">
+        <div className="container mx-auto px-4 py-3 flex justify-between items-center">
           <Link href="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg flex items-center justify-center">
+            <div className="w-9 h-9 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg flex items-center justify-center">
               <Store className="w-5 h-5 text-white" />
             </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-green-500 to-emerald-500 bg-clip-text text-transparent">
+            <span className="text-xl font-bold text-foreground">
               RestaurantHub
             </span>
           </Link>
           <div className="flex items-center space-x-4">
-            <Link href="/" className="text-gray-600 hover:text-green-500 transition-colors">
+            <Link href="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Order Food
             </Link>
-            <Link href="/driver" className="text-gray-600 hover:text-green-500 transition-colors">
+            <Link href="/driver" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Become a Driver
             </Link>
-            <Button asChild variant="outline">
+            <ThemeToggle />
+            <Button asChild variant="default" size="sm" className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600">
               <Link href="/auth/restaurant/signin">Restaurant Sign In</Link>
             </Button>
           </div>

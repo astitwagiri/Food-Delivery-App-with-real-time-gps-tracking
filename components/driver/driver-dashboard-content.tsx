@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { ThemeToggle } from "@/components/ui/theme-toggle"
 import { MapPin, Clock, DollarSign, Navigation, ExternalLink, Star } from "lucide-react"
 import dynamic from "next/dynamic"
 import { useSocket } from "@/components/providers"
@@ -310,15 +311,16 @@ export function DriverDashboardContent({ initialDriver, initialStats, initialOrd
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="border-b border-gray-200 bg-white shadow-sm">
+    <div className="min-h-screen bg-background">
+      <div className="border-b border-border bg-card">
         <div className="p-6">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">FoodHub Driver</h1>
-              <p className="text-gray-600 mt-1">Welcome back, {driver.user.name || "Driver"}</p>
+              <h1 className="text-3xl font-bold text-foreground">FoodHub Driver</h1>
+              <p className="text-muted-foreground mt-1">Welcome back, {driver.user.name || "Driver"}</p>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
+              <ThemeToggle />
               <Badge variant={driver.isAvailable ? "default" : "secondary"} className="px-3 py-1">
                 {driver.isAvailable ? "Online" : "Offline"}
               </Badge>
